@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class GlobalExceptionHandler {
 
+    //Erreur
     @ResponseStatus(code = HttpStatus.CONFLICT)
     @ExceptionHandler(IllegalArgumentException.class)
     public ModelAndView illegalArgumentException(IllegalArgumentException iae, Map<String, Object> model) {

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
+
+//Controller
 @Controller
 @RequestMapping(value = "/")
 public class JspCommuneController {
@@ -32,6 +34,7 @@ public class JspCommuneController {
         return "index";
     }
 
+    //méthode recherche par id
     @GetMapping("/communes/{id}")
     public String findCommuneById(@PathVariable("id") Long id, Map<String, Object> model){
         Optional<Commune> commune = communeService.findCommuneById(id);
@@ -41,7 +44,7 @@ public class JspCommuneController {
         }
         return "erreur";
     }
-
+    //méthode création
     @GetMapping("/communes/create")
     public String create(Map<String, Object> model){
         Commune c = new Commune();
@@ -49,6 +52,7 @@ public class JspCommuneController {
         return "communes/detail";
     }
 
+    // méthode recherche par nom
     @RequestMapping(value = "/communes/recherche/", method = RequestMethod.GET)
     public String searchCommunesByNom(
             @RequestParam(name = "nomCommune", defaultValue = "") String nomCommune,
@@ -94,6 +98,8 @@ public class JspCommuneController {
         }
     }
 
+
+    //méthode sauvegarde
     @RequestMapping(value = "/communes/save/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String save(Commune commune, Map<String, Object> model, RedirectAttributes attributes) {
         if(commune != null){
@@ -104,6 +110,7 @@ public class JspCommuneController {
         return "communes/detail";
     }
 
+    //méthode recherche commune voisine
     @RequestMapping(value = "/communes/voisine/", method = RequestMethod.GET)
     public String communeVoisine(Long id, Long rayon, Map<String, Object> model, Pageable pageable) {
         Optional<Commune> optionalCommune = communeService.findCommuneById(id);
@@ -142,6 +149,7 @@ public class JspCommuneController {
 
     }
 
+    //méthode calcul distance
     public Long getDistance(Double latitude1, Double long1, Double latitude2, Double long2){
         Double lat1 = Math.toRadians(latitude1);
         Double lng1 = Math.toRadians(long1);
@@ -166,6 +174,7 @@ public class JspCommuneController {
     }
 
 
+    //méthode recherche "All"
     @RequestMapping(value = "/communes", method = RequestMethod.GET)
     public String findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,

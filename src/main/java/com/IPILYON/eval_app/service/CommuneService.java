@@ -69,30 +69,33 @@ public class CommuneService {
         return communeRepository.findAll(pageable);
     }
 
+    //suppression commune
     public void deleteCommune(Long id){
         communeRepository.deleteById(id);
     }
 
+    //tri recherche communes
     public Page<Commune> findAllCommunes(Integer page, Integer size, String sortProperty, String sortDirection) {
         Sort sort = Sort.by(new Sort.Order(Sort.Direction.fromString(sortDirection),sortProperty));
         Pageable pageable = PageRequest.of(page,size,sort);
         return communeRepository.findAll(pageable);
     }
 
+    //création-mis à jour commune
     public Commune createOrUpdateCommune(Commune c, boolean api) {
         List<Commune> listcommune = searchCommuneByCodeInsee(c.getCodeInsee());
         if(listcommune.size() > 0){
-            // Attention en cas de code INSEE existant déjà en base
+            // si code INSEE présent en base
             for (Commune commune:listcommune) {
-                //Il faudra qu'il y ait correspondance avec le nom et le code postal,
+                //et correspondance nécessaire avec le nom et le code postal,
                 if(c.getNomCommune().equals(commune.getNomCommune()) && c.getCodePostal().equals(commune.getCodePostal())){
-                    //et que la nouvelle ligne ait un attribut Ligne_5 différent de ceux existants déjà.
+                    //et ligne crée ait un attribut Ligne_5 différent de ceux qui existent.
                     if(communeRepository.countDistinctByLigne5(c.getLigne5()) == 0){
                         return communeRepository.save(c);
                     } else {
-                        //ligne5 existe déjà
+                        //ligne5 existe
                         if(api){
-                            throw new IllegalArgumentException("La commune existe déjà");
+                            throw new IllegalArgumentException("La commune existe");
                         } else {
                             //TODO
                         }
