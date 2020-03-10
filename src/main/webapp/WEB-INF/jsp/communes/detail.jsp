@@ -11,7 +11,7 @@
 <div class="container">
 
     <h2>Détail de la commune ${commune.nomCommune}</h2>
-    <div class="row">
+    <div class="row" style="color:white">
         <form class="col-lg-6" id="saveForm" action="/communes/save/" method="post">
             <div>
                 <div class="form-group">
@@ -43,9 +43,9 @@
         </div>
         <form id="communeVoisine" action="/communes/voisine/" method="get">
             <input type="hidden" value="${commune.id}" name="id">
-            <label class="form-control-label" for="rayon">Recherche les communes voisines :</label>
+            <label class="form-control-label" for="rayon" >Recherche les communes voisines :</label>
             <input type="text" placeholder="Rayon de recherche (en km)" class="form-control col-lg-3" id="rayon" name="rayon" required>
-            <input form="communeVoisine" class="btn btn-info col-lg-3" type="submit" value="Rechercher les communes voisine">
+            <input form="communeVoisine" class="btn btn-info col-lg-4" type="submit" value="Rechercher les communes voisine" style="background-color: green; border:none" >
         </form>
         </div>
     </div>

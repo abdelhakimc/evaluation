@@ -8,7 +8,7 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row" style="color:white">
         <div class="col-lg-12">
             <h1>Liste des communes</h1>
             <div class="row">
@@ -27,7 +27,7 @@
                 </form>
 
                 <form name="searchCodeInsee" class="navbar-form navbar-right" action="/communes/recherche/" method="GET">
-                    <div class="form-group">
+                    <div class="form-group" style="color:white">
                         <input name="codeInsee" class="form-control" id="searchCodeInsee" onblur="setTimeout(function () {$('#searchCodeInseeProposition').hide();},500);" onKeyUp="searchKeyPress('CodeInsee', this.value);" placeholder="Rechercher par code Insee" type="text">
                     </div>
                     <div class="searchProposition" id="searchCodeInseeProposition" style="display: none;">
@@ -40,7 +40,7 @@
                     <button type="submit" class="btn btn-default">Rechercher</button>
                 </form>
             </div>
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped" style="color:grey">
                 <thead>
                 <tr>
                     <th scope="col">

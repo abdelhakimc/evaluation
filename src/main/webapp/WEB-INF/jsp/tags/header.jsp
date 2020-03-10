@@ -10,9 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
-<body>
+<body style="background-color: black" color = white">
 <style>
-    .search{
+
+
+    .searchProposition{
         position: absolute;
         background-color: white;
         border-radius: 3%;
@@ -25,7 +27,7 @@
 
     }
     .proposition:hover{
-        background-color: darkgrey;
+        background-color: white;
     }
 </style>
 <script>
