@@ -1,11 +1,16 @@
 <%@ page import="com.IPILYON.eval_app.repository.CommuneRepository" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="tags/header.jsp" %>
+
+
+
+<%-- design page principal --%>
+
 <div class="container">
     <style>
         .jumbotron{
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
     </style>
     <script>
@@ -23,24 +28,30 @@
                         $("#codeInsee").html(data);
                     }
                 },
-                error: function () {
+                /*error: function () {
                     alert("Une erreur s'est produite, veuillez réessayer plus tard.");
-                }
+                }*/
             });
         }
     </script>
-    <div class="jumbotron center-block">
-        <h2 class="center-block text-center">Bienvenue dans l'interface de gestion des communes !</h2>
+    <div class="jumbotron center-block" text-align="center" ; style="background-color: #c4bfd6;">
+        <h2 class="center-block text-center">Bienvenue !</h2>
+
+
+        <h2 class="center-block text-center" style="font-size: 20px">Choisissez de visualiser la liste des communes ou de créez votre commune : </h2>
     </div>
 
-    <div class="col-md-12" style="background-color: white;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Communes_of_France.png" class="img-responsive center-block card-img-top" alt="Image commune de France" width="450px">
+    <div class="col-md-6" style="background-color: white;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/French_Academies_Zone.png" class="img-responsive center-block card-img-top" alt="Image commune de France" width="350px">
     </div>
-    <div></div>
-    <div class="jumbotron">
-        <p><a onclick="refreshData('/api/communes/count/commune','commune');" id="nbCommunes" title="Rafraîchir">${nbCommunes}</a> communes sont enregistrées actuellement.</p>
-        <p>Les communes sont répertoriés dans <a onclick="refreshData('/api/communes/count/codePostal','codePostal');" id="codePostal" title="Rafraîchir">${nbCodePostal}</a> code postal ansi que dans <a onclick="refreshData('/api/communes/count/codeInsee', 'codeInsee');" id="codeInsee" title="Rafraîchir">${nbCodeInsee}</a> code INSEE.</p>
+
+    <div class="jumbotron" style="background-color: white;">
+        <p> Nombres communes actuelles en France: <a onclick="refreshData('/api/communes/count/commune','commune');" id="nbCommunes" title="Rafraîchir">${nbCommunes}</a>   </p>
+
     </div>
+    <a role="button" class="btn btn-success navbar-btn" style="background: green;  border: none; font-size: 15px; " href="/communes/create">Créer une commune</a>
 </div>
+
+
 <%@ include file="tags/footer.jsp" %>
 

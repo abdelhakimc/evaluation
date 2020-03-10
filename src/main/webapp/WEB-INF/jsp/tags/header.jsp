@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="fr" >
+
+<%-- design header page --%>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +12,7 @@
 </head>
 <body>
 <style>
-    .searchProposition{
+    .search{
         position: absolute;
         background-color: white;
         border-radius: 3%;
@@ -59,23 +62,26 @@
         document.forms[formName].submit();
     }
 </script>
-<nav class="navbar navbar-default navbar-inverse">
+
+<%-- design proposition communes --%>
+
+<nav class="navbar navbar-default navbar-inverse" style="background: black;">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="/" class="navbar-brand">Gestion des communes</a>
+            <a href="/" class="navbar-brand" style="background: black">Menu Principal</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/communes?page=0&size=10&sortProperty=nomCommune&sortDirection=ASC" class="nav-link">Liste des communes</a></li>
+                <li class="active"><a href="/communes?page=0&size=10&sortProperty=nomCommune&sortDirection=ASC" class="nav-link" style="background: black;">Listing des communes</a></li>
             </ul>
 
-            <a role="button" class="btn btn-success navbar-btn" href="/communes/create">Créer une commune</a>
+            <a role="button" class="btn btn-success navbar-btn" style="background: black;  border: none; font-size: 15px; " href="/communes/create">Créer une commune</a>
             <form name="searchNomCommune" class="navbar-form navbar-right" action="/communes/recherche/" method="GET">
                 <div class="form-group">
-                    <input name="nomCommune" class="form-control" id="searchNomCommune" onblur="setTimeout(function () {$('#searchNomCommuneProposition').hide();},500);" onKeyUp="searchKeyPress('NomCommune', this.value);" placeholder="Rechercher par nom" type="text">
+                    <input name="nomCommune" class="form-control" id="searchNomCommune" onblur="setTimeout(function () {$('#searchNomCommune').hide();},500);" onKeyUp="searchKeyPress('NomCommune', this.value);" placeholder="Rechercher par nom" type="text">
                 </div>
-                <div class="searchProposition" id="searchNomCommuneProposition" style="display: none;">
+                <div class="search" id="searchNomCommune1" style="display: none;">
                     <div id="NomCommune0" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>
                     <div id="NomCommune1" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>
                     <div id="NomCommune2" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>

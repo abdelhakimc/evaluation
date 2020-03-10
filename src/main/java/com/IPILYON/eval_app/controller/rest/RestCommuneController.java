@@ -119,7 +119,7 @@ public class RestCommuneController {
             communeService.deleteCommune(id);
     }
 
-
+    //recherche associée
     @RequestMapping(value = "/searchProposition", method = RequestMethod.GET)
     public List<String> searchProposition(
             @RequestParam(name = "NomCommune", defaultValue = "") String nomCommune,
