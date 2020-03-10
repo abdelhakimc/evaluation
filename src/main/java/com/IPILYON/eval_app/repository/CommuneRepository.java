@@ -21,7 +21,7 @@ public interface CommuneRepository extends PagingAndSortingRepository<Commune, L
     @Query(value="select count(*) from Communes c where c.code_postal is not null", nativeQuery = true)
     Long countAllByCodePostal();
 
-    Commune findByNomCommuneContainingIgnoreCase(String nomCommune);
+    List<Commune> findByNomCommuneContainingIgnoreCase(String nomCommune);
 
     @Query(value="select count(*) from Communes c where c.ligne_5 like ?1", nativeQuery = true)
     Long countDistinctByLigne5(String ligne5);

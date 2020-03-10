@@ -53,11 +53,11 @@
         });
     }
 
-    function submitForm(selectedPropostion, formName) {
+    function submitForm(selectedProposition, formName) {
         console.log("submitForm !");
-        console.log(selectedPropostion);
+        console.log(selectedProposition);
         console.log(formName);
-        $("#"+formName).val(selectedPropostion);
+        $("#"+formName).val(selectedProposition);
         $("#"+formName+"Proposition").hide();
         document.forms[formName].submit();
     }
@@ -79,9 +79,9 @@
             <a role="button" class="btn btn-success navbar-btn" style="background: black;  border: none; font-size: 15px; " href="/communes/create">Créer une commune</a>
             <form name="searchNomCommune" class="navbar-form navbar-right" action="/communes/recherche/" method="GET">
                 <div class="form-group">
-                    <input name="nomCommune" class="form-control" id="searchNomCommune" onblur="setTimeout(function () {$('#searchNomCommune').hide();},500);" onKeyUp="searchKeyPress('NomCommune', this.value);" placeholder="Rechercher par nom" type="text">
+                    <input name="nomCommune" class="form-control" id="searchNomCommune" onblur="setTimeout(function () {$('#searchNomCommuneProposition').hide();},500);" onKeyUp="searchKeyPress('NomCommune', this.value);" placeholder="Rechercher par nom" type="text">
                 </div>
-                <div class="search" id="searchNomCommune1" style="display: none;">
+                <div class="searchProposition" id="searchNomCommuneProposition" style="display: none;">
                     <div id="NomCommune0" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>
                     <div id="NomCommune1" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>
                     <div id="NomCommune2" class="proposition" onclick="submitForm(this.innerText, 'searchNomCommune');"></div>

@@ -59,7 +59,7 @@ public class RestCommuneController {
     @GetMapping(params = "nom")
     public Commune searchCommuneByNom(@RequestParam("nom") String nom) {
         if (communeService.searchCommuneByNom(nom) != null) {
-            return communeService.searchCommuneByNom(nom);
+            return (Commune) communeService.searchCommuneByNom(nom);
         }
         throw new EntityNotFoundException("Commune introuvable.");
     }

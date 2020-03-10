@@ -35,7 +35,7 @@ public class CommuneService {
         return communeRepository.findByCodePostal(codePostal);
     }
 
-    public Commune searchCommuneByNom(String nomCommune){
+    public List<Commune> searchCommuneByNom(String nomCommune){
         return communeRepository.findByNomCommuneContainingIgnoreCase(nomCommune);
     }
 

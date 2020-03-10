@@ -60,12 +60,33 @@ public class JspCommuneController {
             @RequestParam(name = "codeInsee", defaultValue = "") String codeInsee,
             Map<String, Object> model, Pageable pageable) {
         if(!nomCommune.equals("")){
-            Commune c = this.communeService.searchCommuneByNom(nomCommune);
-            if(c == null){
+            List<Commune> communesList = this.communeService.searchCommuneByNom(nomCommune);
+            Integer page;
+            if(communesList == null){
                 throw new EntityNotFoundException("Impossible de trouver la commune " + nomCommune);
             }
-            model.put("commune", c);
-            return "communes/detail";
+            if (communesList.size() == 1) {
+                model.put("commune", communesList.get(0));
+                return "communes/detail";
+            } else {
+                page = 0;
+                int start =  (int) pageable.getOffset();
+                int end = (start + pageable.getPageSize()) > communesList.size() ? communesList.size() : (start + pageable.getPageSize());
+                Page<Commune> pageCommune = new PageImpl<Commune>(communesList.subList(start, end), pageable, communesList.size());
+                model.put("communesList", pageCommune);
+                model.put("size", communesList.size());
+                model.put("sortDirection", "ASC");
+                model.put("sortDirectionOpposite", "DESC");
+                model.put("sortProperty", "codePostal");
+                model.put("page", page);
+                model.put("pageAffichage", page + 1);
+                model.put("nextPage", page + 1);
+                model.put("previousPage", page - 1);
+                model.put("start", pageable.getOffset());
+                model.put("end", end > pageCommune.getTotalElements() ? pageCommune.getTotalElements() : end);
+                return "communes/liste";
+            }
+
         } else {
 
             if(!codePostal.equals("")){
@@ -78,6 +99,7 @@ public class JspCommuneController {
                 Commune c = this.communesList.get(0);
                 model.put("commune", c);
                 return "communes/detail";
+
             }
             Integer page = 0;
             int start =  (int) pageable.getOffset();
